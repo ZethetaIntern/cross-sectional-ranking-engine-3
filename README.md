@@ -4,6 +4,10 @@
 
 ## Overview
 A production-grade, single-engine quantitative workflow that scores Indian equities by their probability of outperforming peers over a forward 21-day holding horizon. Implements LightGBM LambdaMART under Purged & Embargoed Cross-Validation, Platt/Isotonic Probability Calibration, Mondrian Conformal Prediction wrappers, and cryptographic SHA-256 audit logging.
+## Core Philosophy: Direction over Magnitude
+Traditional quantitative forecasting in Indian equities fails when attempting point-prediction (forecasting exact future return magnitude, e.g., 'Stock X will gain +12%'). Single-stock price levels are dominated by market noise. 
+
+This engine discards point-forecasting in favor of **relative cross-sectional ranking (Direction over Magnitude)**. Instead of forecasting absolute returns, the LambdaMART ranker solves a pairwise discrimination task: ordering the cross-section by the probability of outperforming the median peer over a 21-day holding horizon, validated via Spearman Rank IC.
 
 ## Core Features
 - **Point-in-Time Data Pipeline**: Backward as-of joins with a 45-day SEBI filing lag constraint to eliminate look-ahead bias.
